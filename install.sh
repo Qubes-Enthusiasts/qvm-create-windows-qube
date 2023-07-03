@@ -65,7 +65,7 @@ else
     fi
 fi
 
-resources_qube="windows-mgmt"
+resources_qube="${RESOURCES_QUBE:-windows-mgmt}"
 resources_dir="/home/user/qvm-create-windows-qube"
 template="$(qubes-prefs default_template)"
 
