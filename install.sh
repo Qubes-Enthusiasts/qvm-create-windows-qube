@@ -66,6 +66,8 @@ else
 fi
 
 resources_qube="${RESOURCES_QUBE:-windows-mgmt}"
+origin_repo="https://github.com/elliotkillick/qvm-create-windows-qube"
+base_repo="${BASE_REPO:-$origin_repo}"
 resources_dir="/home/user/qvm-create-windows-qube"
 template="$(qubes-prefs default_template)"
 
@@ -112,7 +114,7 @@ until qvm-start "$resources_qube"; do
 done
 
 echo -e "${BLUE}[i]${NC} Cloning qvm-create-windows-qube GitHub repository..." >&2
-qvm-run -p "$resources_qube" "cd ${resources_dir%/*} && git clone https://github.com/elliotkillick/qvm-create-windows-qube"
+qvm-run -p "$resources_qube" "cd ${resources_dir%/*} && git clone $base_repo"
 
 echo -e "${BLUE}[i]${NC} Please check for a \"Good signature\" from GPG (Verify it out-of-band if necessary)..." >&2
 qvm-run -p "$resources_qube" "cd '$resources_dir' && gpg --import author.asc && git verify-commit \$(git rev-list --max-parents=0 HEAD)"
