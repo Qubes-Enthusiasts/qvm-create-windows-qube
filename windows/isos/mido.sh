@@ -201,7 +201,7 @@ scurl_file() {
 
     # --location: Microsoft likes to change which endpoint these downloads are stored on but is usually kind enough to add redirects
     # --fail: Return an error on server errors where the HTTP response code is 400 or greater
-    curl --location --output "$part_file" --continue-at - --fail --proto =https "--tlsv$tls_version" -- "$url" || {
+    curl --progress-bar --location --output "$part_file" --continue-at - --fail --proto =https "--tlsv$tls_version" -- "$url" || {
         error_code=$?
         handle_curl_error "$error_code"
 
